@@ -8,16 +8,23 @@
         <body bgcolor="Lavender">
             <p><mark><u><h1>Contact Page</h1></mark></p></u>
 
-            <hr>
-            <fieldset>
-              <legend>Contact Us?</legend>
-              <form action="https://formsubmit.co/obieanidavid20@gmail.com" method="POST">
-                <input type="hidden" name="_subject" value="Order placed.">
-                    <textarea rows="10" cols="100" placeholder='Type in your message here' required></textarea>
-              <button type="submit">SEND A MESSAGE</button>
-                    </form>
-            </br>
-            </fieldset>
-          </form>
-        <br>
-        </hr>
+           <form action="/submit-form" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+           
+            <li style="float: none; margin-right: 10px;" ></li>
+            <label for="email">Email:</label>
+            <input type="email" id="subject" name="email" required>
+        
+            <li style="float: none; margin-right: 10px;" ></li>
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject">
+
+                <P><h2>OTHERS</h2></P>
+
+            <li style="float: none; margin-right: 10px;" ></li>
+            <label for="message">Message:</label>
+            <textarea rows="10" cols="100" id="message" name="message" required></textarea>
+
+            <button type="submit">Send</button>
+         </form>

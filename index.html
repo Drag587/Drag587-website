@@ -2,11 +2,15 @@
 <html>
 <head>
     <title>Electric Web</title>
-    <img src="Electric web Logo.png" width="1343" height="293">
+    <img src="Electric web Logo 2.png" 
     <link rel="icon" href="Buggati divo.jpg">
-    <h1><a href="Comments.html">COMMENTS</a></h1>
-    <h1><a href="Contact Us.html">CONTACT US</a></h1>
-    <h1><a href="Go To Cart.html">GO TO CART </a></h1> 
+    <hr>
+    <fieldset>
+        <legend>Menu</legend>
+           <h2 style="float: left; margin-left: 50px; text-align: left; margin-top: 50px;"><a href="Comments.html">Comments</a></h2> 
+            <h2 style="float: left; margin-left: 50px; text-align: left; margin-top: 50px;"><a href="Contact Us.html">Contact Us</a></h2>
+            <h2 style="float: left; margin-left: 50px; text-align: left; margin-top: 50px;"><a href="Go To Cart.html">Go To Cart</a></h2>
+        </fieldset>
     
 </head>
     <body text="black" align="center">
@@ -17,30 +21,46 @@
 
 
 
+
+
+
 <h2 style="text-align: left;"><p>Welcome to Electric Web. This is the place where you can buy different electrical products which helps you in your daily lives.</p></h2>
 <p><h2>Below are some electrical appliances you will find in my website.</h2></p>
 <p><h2>NOTE: Applinces in delivery may not look exactly like the image</h2></p>
 
+<div id="productList">
+<div>
  <p><li style="float: none; margin-right: 10px;">
     <a href="Gas_Cooker.html"><img src="Gas cooker.png" width="355" height="354" ></a> 
 <p><h3>Gas cooker </p></h3>
 <p><h3> ₦450,000.00 
-    <h2><a href="Gas_Cooker.html">Details</a></h2>
-</h3>
 
+    <h2><a href="Gas_Cooker.html">Details</a></h2>
+    <button onclick="addToCart('Gas Cooker', 450000.00)">Add To Cart</button>
+</div>
+</div>
+</h3></div>
+
+<div id="productList">
+    <div>
 <li style="float: none; margin-right: 10px;" >
     <a href="DSTV A7 Remote.html"><img src="DSTV A7 Remote.jfif" width="476" height="200"></a> 
 <p><h3>DSTV A7 Remote </p></h3>
 <p><h3> ₦15,000.00 
 <h3><a href="DSTV A7 Remote.html">Details</a></h3>
+
 </p></h3>
 
+<div class="product" name="fan" id="1" price="25000" >
+    
 <li style="float: none; margin-right: 10px;">
     <a href="Table fan.html"><img src="Table fan.png" width="355" height="354"></a> 
 <p><h3>Table fan </p></h3>
-<p><h3>₦25,000.00
+<p><h3>₦25,000.00</p></h3>
     <h3><a href="Table fan.html">Details</a></h3>
-</p></h3>
+    <button onclick="addToCart(this)">Add To Cart</button>
+
+
 
 <p><li style="float: none; margin-right: 10px;">
     <a href="A hair dryer.html"><img src="A hair dryer.png" width="355" height="354"></a> 
@@ -109,7 +129,19 @@
                                 <p><h3>Television</p></h3>
                                 <p><h3>   ₦410,000.00  
                                  
-                                 <p><h2>NOTE: If you buy before the end of 5 days, you get a DISCOUNT of 10% </h2></p>   
+                                 <p><h2>NOTE: If you buy before the end of 5 days, you get a DISCOUNT of 10% </h2></p>  
+                                 <p><h2>NOTE: Blogs are for only 5 appliances </h2></p>  
+                                 <p><h2>This website is made by Ani-David Justin.</h2></p>
+                                 <button onclick="goToCart()">Go to cart</button>
+                                 
+                                 <script>
+                                    function addToCart(){
+
+                                    }
+                                    function goToCart(){
+                                        window.location.href ='Go To Cart.html'
+                                    }
+                                 </script>
                                    
 </p></h3>
     
