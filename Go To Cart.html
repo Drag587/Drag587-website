@@ -6,26 +6,22 @@
     <body text="blue" align="center">
         <h2><a href="index.html">Go Back</a></h2>
         <body bgcolor="lavender">
-            <p><mark><h1>CART</h1></mark></p>
-            <p><h2>Welcome to Your cart. This is where you can easily check the items you want to buy.</h2></p>
+            <div class="cart">
+                <h2>Your Cart</h2>
+                <ul id="cart-items"></ul>
+                <p id="total-price">Total: ₦0</p>
+                <h2><a href="Checkout.html">Checkout</a></h2>
+            </div>
 
-        <body>
-            <header>
-                <div class="cart-container">
-                    <button id="cartButton">Cart (0)</button>
-                    <div id="cartMenu" class="cart-menu">
-                        <ul id="cartItems">
+            
+        
+           
 
-                             
-                        </ul>
-                        <button id="checkoutButton">Checkout</button>
 
-                        <div class="cart">
-                            <ul id="cart-items"></ul>
-                            <p id="total-price">Total Price:  ₦0.00 </p>
-                            </div>
-                    </div>
-                </div>
-            </header>
-        </body>
-        <script src="script.js"></script>
+
+
+       
+            <script src="checkout.js"></script>
+           <script src="cart.js"></script>
+        
+       
