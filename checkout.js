@@ -4,7 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const cancelCheckoutButton = document.getElementById('cancel-checkout');
     const checkoutFormElement = document.getElementById('checkout');
 
+    function goBack(){
+    window.location.href='index.html'
+    }
 
+    
     function showCheckoutForm() {
         checkoutForm.style.display = 'block';
     }
