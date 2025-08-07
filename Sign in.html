@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In / Sign Up</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 400px;
+  color: #fff;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ddd;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border: none;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.input-group input::placeholder {
+  color: #ccc;
+}
+
+.input-group input:focus {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #ffffff;
+  color: #3b82f6;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #e0e0e0;
+}
+
+#message {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <h2>Welcome</h2>
+
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="email" placeholder="Email" required />
+      </div>
+
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" required />
+      </div>
+
+      <button id="signup" class="btn">Sign Up</button>
+      <button id="login" class="btn">Sign In</button>
+
+      <p id="message"></p>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+
+  <!-- Firebase Config -->
+  <script src="firebase-config.js"></script>
+
+  <!-- Authentication Logic -->
+  <script>
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const message = document.getElementById("message");
+
+    document.getElementById("signup").addEventListener("click", async () => {
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      try {
+        await firebase.auth().createUserWithEmailAndPassword(email, password);
+        message.textContent = "Account created successfully!";
+        message.style.color = "green";
+      } catch (error) {
+        message.textContent = error.message;
+        message.style.color = "red";
+      }
+    });
+
+    document.getElementById("login").addEventListener("click", async () => {
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      try {
+        await firebase.auth().signInWithEmailAndPassword(email, password);
+        
+        // ✅ Redirect after successful login
+        window.location.href = "page2.html";
+        
+      } catch (error) {
+        message.textContent = error.message;
+        message.style.color = "red";
+      }
+    });
+
+
+    // REPLACE these with your own Firebase project values!
+const firebaseConfig = {
+  apiKey: "AIzaSyA69jVYb0tps1UNhYz5XvNIcFCCXeatOto",
+  authDomain: "electric-web-f6798.firebaseapp.com",
+  projectId: "electric-web-f6798",
+  appId: "1:384326380758:web:962c1f0d95c092b980ad77"
+  storageBucket: "electric-web-f6798.firebasestorage.app",
+  messagingSenderId: "384326380758",
+  measurementId: "G-BJVFENW6QP"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+
+
+
+
+  </script>
+</body>
+</html>
