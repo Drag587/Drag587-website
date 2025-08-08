@@ -16,9 +16,16 @@ function addToCart(element) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+function updateCartCounter(){
+    const cartCount = document.getElementById('cart-count');
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    cartCount.textContent = cart.length;
+}
+
 function goToCart(){
     window.location.href='Go To Cart.html'
 }
+
 
 
 
