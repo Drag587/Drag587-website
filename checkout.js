@@ -9,9 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
-    function showCheckoutForm() {
-        checkoutForm.style.display = 'block';
-    }
+  
 
 
     function hideCheckoutForm() {
@@ -46,10 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    checkoutButton.addEventListener('click', () => {
-        showCheckoutForm();
-
-    });
 
 
     checkoutFormElement.addEventListener('submit', handleCheckout);
@@ -65,3 +59,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     autoShowCheckoutIfCartNotEmpty();
 });
+
