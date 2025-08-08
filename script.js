@@ -14,13 +14,13 @@ function addToCart(element) {
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
-}
 
-  // Optional: update a visual counter per item or total
-    const counter = productElement.querySelector('.item-counter');
-    if (counter) {
-        counter.textContent = `Added: ${existingItem ? existingItem.quantity : 1}`;
-    }
+    updateCartCounter();
+}
+function updateCartCounter(){
+    const cartCount = document.getElementById('cart-count')
+    const cartItems = JSON.parse(localStorage.getItem('cart)) || [];
+    cartCount.textContent = cart.length
 }
 
 
