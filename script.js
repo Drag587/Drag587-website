@@ -4,7 +4,7 @@ function addToCart(element) {
     const name = productElement.getAttribute('data-name');
     const price = parseFloat(productElement.getAttribute('data-price'));
 
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cart = JSON.parse(localStorage.getItem('cart-item')) || [];
 
     const existingItem = cart.find(item => item.id === id);
     if (existingItem) {
@@ -24,6 +24,7 @@ function goToCart(){
 
 
   
+
 
 
 
