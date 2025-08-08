@@ -14,6 +14,7 @@ function addToCart(element) {
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
+}
 
 function goToCart(){
     window.location.href='Go To Cart.html'
@@ -23,6 +24,7 @@ function goToCart(){
 
 
   
+
 
 
 
