@@ -2,183 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sign In / Sign Up</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login with Email</title>
   <style>
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Segoe UI", sans-serif;
-}
-
-body {
-  background: linear-gradient(135deg, #4f46e5, #3b82f6);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-  width: 90%;
-  max-width: 400px;
-  color: #fff;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.input-group {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.input-group i {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #ddd;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 12px 12px 12px 40px;
-  border: none;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  outline: none;
-  transition: background 0.3s ease;
-}
-
-.input-group input::placeholder {
-  color: #ccc;
-}
-
-.input-group input:focus {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.btn {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  background: #ffffff;
-  color: #3b82f6;
-  font-weight: bold;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn:hover {
-  background: #e0e0e0;
-}
-
-#message {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 0.9rem;
-}
-
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .auth-box {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #2563eb;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1d4ed8;
+    }
+    .message {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="form-box">
-      <h2>Welcome</h2>
 
-      <div class="input-group">
-        <i class="fas fa-envelope"></i>
-        <input type="email" id="email" placeholder="Email" required />
-      </div>
-
-      <div class="input-group">
-        <i class="fas fa-lock"></i>
-        <input type="password" id="password" placeholder="Password" required />
-      </div>
-
-      <button id="signup" class="btn">Sign Up</button>
-      <button id="login" class="btn">Sign In</button>
-
-      <p id="message"></p>
-    </div>
+  <div class="auth-box">
+    <h2>Email Login</h2>
+    <input type="email" id="email" placeholder="Enter your email" required />
+    <button onclick="sendMagicLink()">Send Login Link</button>
+    <div id="message" class="message"></div>
   </div>
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
-
-  <!-- Firebase Config -->
-  <script src="firebase-config.js"></script>
-
-  <!-- Authentication Logic -->
+  <!-- Load Supabase JS library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
   <script>
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-    const message = document.getElementById("message");
+    // Replace with your actual Supabase project credentials
+    const supabaseUrl = 'https://ydmdutqsiefzovjcxcja.supabase.co'; // 🔁 CHANGE THIS
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkbWR1dHFzaWVmem92amN4Y2phIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ1NzQyNTksImV4cCI6MjA3MDE1MDI1OX0.xp1JXKRiWuRmLUSfrMvGSJf_NmVn4isJH--YnPjAsCo'; // 🔁 CHANGE THIS
 
-    document.getElementById("signup").addEventListener("click", async () => {
-      const email = emailInput.value;
-      const password = passwordInput.value;
+    const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
 
-      try {
-        await firebase.auth().createUserWithEmailAndPassword(email, password);
-        message.textContent = "Account created successfully!";
-        message.style.color = "green";
-      } catch (error) {
-        message.textContent = error.message;
-        message.style.color = "red";
+    async function sendMagicLink() {
+      const email = document.getElementById('email').value.trim();
+      const messageDiv = document.getElementById('message');
+
+      messageDiv.textContent = '';
+
+      if (!email) {
+        messageDiv.innerHTML = '<p class="error">Please enter your email address.</p>';
+        return;
       }
-    });
 
-    document.getElementById("login").addEventListener("click", async () => {
-      const email = emailInput.value;
-      const password = passwordInput.value;
+      const { error } = await supabase.auth.signInWithOtp({ email });
 
-      try {
-        await firebase.auth().signInWithEmailAndPassword(email, password);
-        
-        // ✅ Redirect after successful login
-        window.location.href = "page2.html";
-        
-      } catch (error) {
-        message.textContent = error.message;
-        message.style.color = "red";
+      if (error) {
+        messageDiv.innerHTML = `<p class="error">${error.message}</p>`;
+      } else {
+        messageDiv.innerHTML = `<p class="success">Check your email for a secure login link.</p>`;
       }
-    });
-
-
-    // REPLACE these with your own Firebase project values!
-const firebaseConfig = {
-  apiKey: "AIzaSyA69jVYb0tps1UNhYz5XvNIcFCCXeatOto",
-  authDomain: "electric-web-f6798.firebaseapp.com",
-  projectId: "electric-web-f6798",
-  appId: "1:384326380758:web:962c1f0d95c092b980ad77"
-  storageBucket: "electric-web-f6798.firebasestorage.app",
-  messagingSenderId: "384326380758",
-  measurementId: "G-BJVFENW6QP"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-
-
-
-
+    }
   </script>
 </body>
 </html>
